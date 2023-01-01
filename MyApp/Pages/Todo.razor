@@ -1,0 +1,18 @@
+﻿@page "/todo"
+@using MyApp.Data
+
+<h3>Todo</h3>
+
+<ul class="list-unstyled">
+    @foreach (var todo in todos)
+    {
+        <li>@todo.Title</li>
+    }
+</ul>
+
+<input placeholder="Something todo" />
+<button>Add todo</button>
+
+@code {
+    private List<TodoItem> todos = new();
+}

@@ -1,7 +1,7 @@
 ﻿@page "/todo"
 @using MyApp.Data
 
-<h3>Todo</h3>
+<h3>Todo List</h3>
 
 <ul class="list-unstyled">
     @foreach (var todo in todos)
@@ -10,9 +10,19 @@
     }
 </ul>
 
-<input placeholder="Something todo" />
-<button>Add todo</button>
+<input placeholder="Something todo" @bind="newTodo" />
+<button @onclick="AddTodo">Add todo</button>
 
 @code {
+
     private List<TodoItem> todos = new();
+    private string? newTodo;
+    private void AddTodo()
+    {
+        if (!string.IsNullOrWhiteSpace(newTodo))
+        {
+            todos.Add(new TodoItem { Title = newTodo });
+            newTodo = string.Empty;
+        }
+    }
 }
